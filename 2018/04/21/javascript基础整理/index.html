@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Javascript基础整理 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.变量类型
+JS中使用typeof 能得到哪些类型
+何时使用 === 何时使用 ==
+JS中有哪些内置函数
+JS变量按照存储方式区分为哪些类型，并描述其特点
+如何理解JSON
+
+值类型：每个变量存储各自的值，不会相互影响，number , string , boolean">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript基础整理">
+<meta property="og:url" content="http://yoursite.com/2018/04/21/javascript基础整理/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.变量类型
+JS中使用typeof 能得到哪些类型
+何时使用 === 何时使用 ==
+JS中有哪些内置函数
+JS变量按照存储方式区分为哪些类型，并描述其特点
+如何理解JSON
+
+值类型：每个变量存储各自的值，不会相互影响，number , string , boolean">
+<meta property="og:image" content="https://s1.ax2x.com/2018/05/17/xcMby.png">
+<meta property="og:updated_time" content="2018-05-17T08:52:56.017Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript基础整理">
+<meta name="twitter:description" content="1.变量类型
+JS中使用typeof 能得到哪些类型
+何时使用 === 何时使用 ==
+JS中有哪些内置函数
+JS变量按照存储方式区分为哪些类型，并描述其特点
+如何理解JSON
+
+值类型：每个变量存储各自的值，不会相互影响，number , string , boolean">
+<meta name="twitter:image" content="https://s1.ax2x.com/2018/05/17/xcMby.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!--<link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">-->
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-javascript基础整理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/21/javascript基础整理/" class="article-date">
+  <time datetime="2018-04-21T01:45:04.000Z" itemprop="datePublished">2018-04-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程学习/">编程学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Javascript基础整理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-变量类型"><a href="#1-变量类型" class="headerlink" title="1.变量类型"></a>1.变量类型</h3><ul>
+<li>JS中使用typeof 能得到哪些类型</li>
+<li>何时使用 === 何时使用 ==</li>
+<li>JS中有哪些内置函数</li>
+<li>JS变量按照存储方式区分为哪些类型，并描述其特点</li>
+<li>如何理解JSON</li>
+</ul>
+<h4 id="值类型："><a href="#值类型：" class="headerlink" title="值类型："></a>值类型：</h4><p>每个变量存储各自的值，不会相互影响，number , string , boolean </p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a = 100;</div><div class="line">var b = a;</div><div class="line">a = 200;</div><div class="line">console.log(b);    //100</div></pre></td></tr></table></figure>
+<h4 id="引用类型："><a href="#引用类型：" class="headerlink" title="引用类型："></a>引用类型：</h4><p>变量只是通过一个指针指向对象，改变了age对象，由于a也指向该对象，所以a指向的age对象为21， object , array , function</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a = &#123;age:20&#125;</div><div class="line">var b = a</div><div class="line">b.age = 21</div><div class="line">console.log(a.age)    //21</div></pre></td></tr></table></figure>
+<h4 id="typeof-运算符"><a href="#typeof-运算符" class="headerlink" title="typeof 运算符"></a>typeof 运算符</h4><p>有六种类型：undefined , string , number , boolean , object , function ; typeof只能区分值类型的详细类型；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">typeof &#123;&#125;    //object</div><div class="line">typeof []    //object</div><div class="line">typeof null    //object</div><div class="line">typeof console.log    //function</div></pre></td></tr></table></figure>
+<h3 id="2-变量计算-强制类型转换"><a href="#2-变量计算-强制类型转换" class="headerlink" title="2.变量计算 - 强制类型转换"></a>2.变量计算 - 强制类型转换</h3><h4 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var a = 100 + 10    //110</div><div class="line">var b = 100 + &apos;10&apos;    //10010</div></pre></td></tr></table></figure>
+<h4 id="运算符"><a href="#运算符" class="headerlink" title="==运算符"></a>==运算符</h4><p>obj.a == null ——&gt; obj.a === null || obj.a === undefined</p>
+<p>(除了 obj.a == null 用== 其余都用=== ，jQuery 源码推荐写法)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">100 == ‘100’    //true</div><div class="line">0 == &apos;&apos;    //true</div><div class="line">null == undefined    //true</div></pre></td></tr></table></figure>
+<h4 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = true</div><div class="line">if(a)&#123;//...&#125;</div><div class="line"></div><div class="line">var b = 100</div><div class="line">if(b)&#123;//...&#125;</div><div class="line"></div><div class="line">var c = &apos;&apos;</div><div class="line">if(c)&#123;//...&#125;</div></pre></td></tr></table></figure>
+<p>if中转换为false的情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if(0)&#123;&#125;</div><div class="line">if(NaN)&#123;&#125;</div><div class="line">if(&apos;&apos;)&#123;&#125;</div><div class="line">if(null)&#123;&#125;</div><div class="line">if(false)&#123;&#125;</div></pre></td></tr></table></figure>
+<h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">console.log(10 &amp;&amp; 0)    //0</div><div class="line">console.log(&apos;&apos; || &apos;abc&apos;)    //&apos;abc&apos;</div><div class="line">console.log(!window.abc)    //true  因为window.abc 是undefined</div></pre></td></tr></table></figure>
+<p>判断一个变量会被当作true还是false</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var a = 100;</div><div class="line">console.log(!!a)</div></pre></td></tr></table></figure>
+<h4 id="JS中的内置函数"><a href="#JS中的内置函数" class="headerlink" title="JS中的内置函数"></a>JS中的内置函数</h4><p>Object , Array , Boolean , Number , String , Function , Date , RegExp , Error</p>
+<p>(注意：Math 是对象，不是函数)</p>
+<h4 id="理解JSON"><a href="#理解JSON" class="headerlink" title="理解JSON"></a>理解JSON</h4><p>//JSON 是 JS 一个内置对象而已</p>
+<p>JSON.stringify({a:10, b:20}) 　　对象转换字符串</p>
+<p>JSON.parse(‘{“a”:10, “b”:20}’)　　字符串转换成对象</p>
+<h3 id="3-原型和原型链"><a href="#3-原型和原型链" class="headerlink" title="3.原型和原型链"></a>3.原型和原型链</h3><ul>
+<li>如何准确判断变量是数组类型？</li>
+<li>写一个原型链继承的例子</li>
+<li>描述new 一个对象的过程</li>
+<li>zepto源码中如何使用原型链</li>
+</ul>
+<h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function Foo(name, age)&#123;</div><div class="line">    this.name = name;</div><div class="line">    this.age = age;</div><div class="line">    this.class = &apos;class-1&apos;</div><div class="line">    //return this  //默认有这一行</div><div class="line">&#125;</div><div class="line"></div><div class="line">var f = new Foo(&apos;zhangsan&apos;,20)</div><div class="line">// var f1 = new Foo(&apos;lisi&apos;,22)    //可创建多个对象</div></pre></td></tr></table></figure>
+<p>开头字母须大写</p>
+<p>new Foo()时把参数传进去，this会先变成空对象，挨个赋值之后，会return出来给f，</p>
+<p>f就具备了调用属性的能力。</p>
+<h4 id="构造函数扩展"><a href="#构造函数扩展" class="headerlink" title="构造函数扩展"></a>构造函数扩展</h4><ul>
+<li>var a = {} 其实是 var a = new Object() 的语法糖</li>
+<li>var a = [] 其实是 var a = new Array()的语法糖</li>
+<li>function Foo(){…} 其实是 var Foo = new Function(…)</li>
+<li>使用instanceof 判断一个函数是否是一个变量的构造函数（判断一个变量是否为“数组”： 变量 instanceof Array）</li>
+</ul>
+<h4 id="原型规则和示例"><a href="#原型规则和示例" class="headerlink" title="原型规则和示例"></a>原型规则和示例</h4><p>所有的引用类型（数组、对象、函数），都具有对象特性，即可自由扩展属性（除了“null” 以外）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//自由扩展属性</div><div class="line">var obj = &#123;&#125;; obj.a = 100;</div><div class="line">var arr = []; arr.a = 100;</div><div class="line">function fn ()&#123;&#125;</div><div class="line">fn.a = 100;</div></pre></td></tr></table></figure>
+<p>所有的引用类型（数组、对象、函数），都有一个 <strong>proto</strong>属性（隐式原型），属性值是一个普通对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">console.log(obj.__proto__);    //Object</div><div class="line">console.log(arr.__proto__);    //Array[0]</div><div class="line">console.log(fn.__proto__);    //function()&#123;&#125;</div></pre></td></tr></table></figure>
+<p>所有的函数，都有一个prototype属性（显式原型），属性值也是一个普通的对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(fn.prototype);    //Object&#123;&#125;</div></pre></td></tr></table></figure>
+<p>所有的引用类型（数组、对象、函数），<strong>proto</strong>属性值指向它的构造函数的”prototype”属性值，（指向和完全等是一个概念）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(obj.__proto__ === Object.prototype);    //true</div></pre></td></tr></table></figure>
+<p>当试图得到一个引用类型值的某个属性时，如果这个对象本身没有这个属性，那么会去它的<strong>proto</strong>（即它的构造函数的prototype）中寻找。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function Foo(name,age)&#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div><div class="line">Foo.prototype.altername = function()&#123;</div><div class="line">    alert(this.name);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var f = new Foo(&apos;zhangsan&apos;);</div><div class="line">f.printname = function()&#123;</div><div class="line">    console.log(this.name);</div><div class="line">&#125;</div><div class="line"></div><div class="line">f.printname();</div><div class="line">f.altername();</div><div class="line">f.toString();　　//要去 f.__proto__.__proto__中查找</div></pre></td></tr></table></figure>
+<p> 循环对象自身的属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var item;</div><div class="line">for(item in f)&#123;</div><div class="line">    //高级浏览器已经在 for in 中屏蔽了来自原型的属性</div><div class="line">    //但是这里建议大家还是加上这个判断，保证程序的健壮性</div><div class="line">    if(f.hasOwnProperty(item))&#123;</div><div class="line">        console.log(item);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>原型链：<br><img src="https://s1.ax2x.com/2018/05/17/xcMby.png" alt="xcMby.png"></p>
+<h4 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h4><p>判断==引用类型== 属于哪个==构造函数==的方法</p>
+<p>比如 f instanceof Foo 的判断逻辑是：</p>
+<p>f 的 <strong>proto</strong> 一层一层往上，能否对应到Foo.prototype，再试着判断 f instanceof Object</p>
+<h4 id="原型链继承的例子"><a href="#原型链继承的例子" class="headerlink" title="原型链继承的例子"></a>原型链继承的例子</h4><p>基本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">//动物</div><div class="line">function Animal()&#123;</div><div class="line">    this.eat = function()&#123;</div><div class="line">        console.log(&apos;animal eat&apos;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//狗</div><div class="line">function Dog()&#123;</div><div class="line">    this.bark = function()&#123;</div><div class="line">        console.log(&apos;dog bark&apos;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Dog.prototype = new Animal();</div><div class="line">var hashiqi = new Dog();</div></pre></td></tr></table></figure>
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">function Elem(id)&#123;</div><div class="line">    this.elem = document.getElementById(id);</div><div class="line">&#125;</div><div class="line"></div><div class="line">Elem.prototype.html = function(val)&#123;</div><div class="line">    var elem = this.elem;</div><div class="line">    if(val)&#123;</div><div class="line">        elem.innerHTML = val;</div><div class="line">        return this;    //链式操作</div><div class="line">    &#125;else&#123;</div><div class="line">        return elem.innerHTML;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Elem.prototype.on = function(type,fn)&#123;</div><div class="line">    var elem = this.elem;</div><div class="line">    elem.addEventListener(type,fn);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var div1 = new Elem(&apos;div1&apos;);</div><div class="line"></div><div class="line">div1.html(&apos;&lt;p&gt;hello world&lt;/p&gt;&apos;).on(&apos;click&apos;, function()&#123;</div><div class="line">    alert(&apos;clicked&apos;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="描述new一个对象的过程"><a href="#描述new一个对象的过程" class="headerlink" title="描述new一个对象的过程"></a>描述new一个对象的过程</h4><ol>
+<li>创建一个新对象</li>
+<li>this 指向这个新对象</li>
+<li>执行代码，即对 this 赋值</li>
+<li>返回 this</li>
+</ol>
+<h3 id="4、作用域和闭包"><a href="#4、作用域和闭包" class="headerlink" title="4、作用域和闭包"></a>4、作用域和闭包</h3><ul>
+<li>说一下对变量提升的理解</li>
+<li>说明this几种不同的使用场景</li>
+<li>创建 10 个a标签，点击的时候弹出来对应的序号</li>
+<li>如何理解作用域</li>
+<li>实际开发中闭包的应用</li>
+</ul>
+<h5 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h5><p>在执行代码前，先把定义声明获取一遍，再由上到下执行</p>
+<ul>
+<li>范围：一段 script 或者一个函数</li>
+<li>全局：变量定义、函数声明</li>
+<li>函数：变量定义、函数声明、this、arguments</li>
+</ul>
+<p>PS：注意“函数声明”和“函数表达式”的区别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">console.log(a);  //undefined</div><div class="line">var a = 100;</div><div class="line"></div><div class="line">fn(&apos;zhangsan&apos;);  //&apos;zhangsan&apos; 20</div><div class="line">function fn(name)&#123;</div><div class="line">    age = 20;</div><div class="line">    console.log(name, age);</div><div class="line">    var age;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="this"><a href="#this" class="headerlink" title="this"></a>this</h4><p>this要在执行时才能确认值，定义时无法确认</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">    name: &apos;A&apos;;</div><div class="line">    fn: function()&#123;</div><div class="line">        console.log(this.name);        </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a.fn(); //this === a</div><div class="line">a.fn.call(&#123;name: &apos;B&apos;&#125;); //this === &#123;name: &apos;B&apos;&#125; </div><div class="line">var fn1 = a.fn;</div><div class="line">fn1()   //this === window</div></pre></td></tr></table></figure>
+<p>几种场景：</p>
+<p>作为构造函数执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function Foo(name)&#123;</div><div class="line">    this.name = name;　　//this === Foo</div><div class="line">&#125;</div><div class="line">var f = new Foo(&apos;zhangsan&apos;);</div></pre></td></tr></table></figure>
+<p>作为对象属性执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    name : &apos;A&apos;,</div><div class="line">    printName : function()&#123;</div><div class="line">        console.log(this.name);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">obj.printName();  //this === obj</div></pre></td></tr></table></figure>
+<p>最为普通函数执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function fn()&#123;</div><div class="line">    console.log(this);</div><div class="line">&#125;</div><div class="line">fn();  //this就是Window</div></pre></td></tr></table></figure>
+<p>call apply bind (其实就是用来改变this指向的)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function fn1(name,age)&#123;</div><div class="line">    alert(name);</div><div class="line">    console.log(this);</div><div class="line">&#125;</div><div class="line">fn1.call(&#123;x:100&#125;, &apos;zhangsan&apos;, 20);  //this就是&#123;x:100&#125;</div><div class="line">fn1.apply(&#123;x:100&#125;, [&apos;zhangsan&apos;, 20]);  //this就是&#123;x:100&#125;</div><div class="line"></div><div class="line">var fn2 = function(name,age)&#123;</div><div class="line">    alert(name);</div><div class="line">    console.log(this);</div><div class="line">&#125;.bind(&#123;y:200&#125;);</div><div class="line">fn2(&apos;zhangsan&apos;,20);//this就是&#123;y:200&#125;</div></pre></td></tr></table></figure>
+<h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p>没有块级作用域</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if(true)&#123;</div><div class="line">    var name = &apos;zhangsan&apos;;</div><div class="line">&#125;</div><div class="line">console.log(name);</div></pre></td></tr></table></figure>
+<p>只有函数和全局作用域</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = 100;</div><div class="line">function fn()&#123;</div><div class="line">    var a = 200;</div><div class="line">    console.log(&apos;fn&apos;,a);</div><div class="line">&#125;</div><div class="line">console.log(&apos;global&apos;,a)</div><div class="line">fn();</div></pre></td></tr></table></figure>
+<h4 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function fn()&#123;</div><div class="line">    var b = 200;</div><div class="line">    //当前作用域没有，向父级作用域去找</div><div class="line">    console.log(a);</div><div class="line"></div><div class="line">    console.log(b);</div><div class="line">&#125;</div><div class="line">fn();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = 100;</div><div class="line">function F1()&#123;</div><div class="line">    var b = 200;</div><div class="line">    function F2()&#123;</div><div class="line">        var c = 300;</div><div class="line">        console.log(a); //a是自由变量</div><div class="line">        console.log(b); //b是自由变量</div><div class="line">        console.log(c);</div><div class="line">    &#125;</div><div class="line">    F2();</div><div class="line">&#125;</div><div class="line">F1();</div></pre></td></tr></table></figure>
+<p>一个自由变量，一直不断的去往它的父级作用域找，形成了一个链式结构</p>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function F1()&#123;</div><div class="line">    var a = 100;</div><div class="line"></div><div class="line">    //返回一个函数（函数作为返回值）</div><div class="line">    return function()&#123;</div><div class="line">        console.log(a)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//f1 得到一个函数</div><div class="line">var f1 = F1();</div><div class="line">var a = 200;</div><div class="line">f1();   //100</div></pre></td></tr></table></figure>
+<p>使用场景：</p>
+<ul>
+<li>函数作为返回值（上一个例子）</li>
+<li>函数作为参数传递</li>
+</ul>
+<p>实际开发的应用:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//闭包实际应用中主要用于封装变量，收敛权限</div><div class="line">function isFirstLoad()&#123;</div><div class="line">    var _list = [];</div><div class="line">    return function(id)&#123;</div><div class="line">        if(_list.indexOf(id) &gt;= 0)&#123;</div><div class="line">            return false;</div><div class="line">        &#125;else&#123;</div><div class="line">            _list.push(id);</div><div class="line">            return true;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var firstLoad = isFirstLoad();</div><div class="line">firstLoad(10) //true</div><div class="line">firstLoad(10) //false</div><div class="line">firstLoad(20) //true</div><div class="line">//在isFirstLoad 函数外，根本不可能修改掉 _list 的值</div></pre></td></tr></table></figure>
+<p>创建 10 个 a 标签，点击的时候弹出来对应的序号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var i;</div><div class="line">for (i = 0; i &lt; 10; i++) &#123;</div><div class="line">    (function(i)&#123;  //自执行函数</div><div class="line">        var a = document.createElement(&apos;a&apos;);</div><div class="line">        a.innerHTML = i + &apos;&lt;br&gt;&apos;;</div><div class="line">        a.addEventListener(&apos;click&apos;, function()&#123;</div><div class="line">            alert(i);</div><div class="line">            return false;</div><div class="line">        &#125;)</div><div class="line">        document.body.appendChild(a);</div><div class="line">    &#125;)(i)</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">    (function(i)&#123;</div><div class="line">        var a = document.createElement(&apos;a&apos;);</div><div class="line">        a.innerHTML = &apos;第&apos;+i+&apos;个&lt;br&gt;&apos;;</div><div class="line">        a.onclick = function()&#123;</div><div class="line">            alert(i);</div><div class="line">        &#125;</div><div class="line">        document.body.appendChild(a);</div><div class="line">    &#125;)(i)</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="5、异步和单线程"><a href="#5、异步和单线程" class="headerlink" title="5、异步和单线程"></a>5、异步和单线程</h3><ul>
+<li>同步和异步的区别是什么？分别举一个同步和异步的例子</li>
+<li>一个关于setTimeout的笔试题</li>
+<li>前端使用异步的场景有哪些</li>
+</ul>
+<h4 id="什么是异步"><a href="#什么是异步" class="headerlink" title="什么是异步"></a>什么是异步</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">console.log(100)</div><div class="line">setTimeout(function()&#123;</div><div class="line">    console.log(200)</div><div class="line">&#125;,1000)</div><div class="line">console.log(300)</div><div class="line"></div><div class="line">//100</div><div class="line">//300</div><div class="line">//200</div></pre></td></tr></table></figure>
+<p>异步和同步最大的区别在于有没有==阻塞程序的进行== </p>
+<h4 id="对比同步"><a href="#对比同步" class="headerlink" title="对比同步"></a>对比同步</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log(100)</div><div class="line">alert(200)</div><div class="line">console.log(300)</div><div class="line">//不点击确认，程序会一直卡，不输出300</div></pre></td></tr></table></figure>
+<h4 id="何时需要异步"><a href="#何时需要异步" class="headerlink" title="何时需要异步"></a>何时需要异步</h4><ul>
+<li>可能发生等待的情况</li>
+<li>等待过程中不能像 alert 一样阻塞程序运行</li>
+<li>因此，所有的“等待的情况”都需要异步</li>
+</ul>
+<p>使用异步场景：</p>
+<ul>
+<li>定时任务：setTimeout，setInterval</li>
+<li>网络请求：ajax请求，动态<img>加载</li>
+<li>事件绑定</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//ajax请求代码实例  响应事件需要等待</div><div class="line">console.log(&apos;start&apos;);</div><div class="line">$.get(&apos;./data1.json&apos;,function(data1)&#123;</div><div class="line">    console.log(data1);</div><div class="line">&#125;)</div><div class="line">console.log(&apos;end&apos;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//&lt;img&gt;加载实例  图片加载需要等待</div><div class="line">console.log(&apos;start&apos;);</div><div class="line">var img = document.createElement(&apos;img&apos;);</div><div class="line">img.onload = function()&#123;</div><div class="line">    console.log(&apos;loaded&apos;);</div><div class="line">&#125;</div><div class="line">img.src = &apos;/xxx.png&apos;;</div><div class="line">console.log(&apos;end&apos;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//事件绑定实例  触发事件需要等待</div><div class="line">console.log(&apos;start&apos;);</div><div class="line">document.getElementById(&apos;btn1&apos;).addEventListener(&apos;click&apos;,function()&#123;</div><div class="line">    alert(&apos;clicked&apos;);</div><div class="line">&#125;)</div><div class="line">console.log(&apos;end&apos;);</div></pre></td></tr></table></figure>
+<h4 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h4><p>JS是单线程语言，所有的异步程序会被拿出去先不执行，主线程执行完后，它要看边上有没有等待的程序需要执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">console.log(100)</div><div class="line">setTimeout(function()&#123;</div><div class="line">    console.log(200)</div><div class="line">&#125;)</div><div class="line">console.log(300)</div><div class="line"></div><div class="line">//100</div><div class="line">//300</div><div class="line">//200</div></pre></td></tr></table></figure>
+<ul>
+<li>执行第一行，打印100</li>
+<li>执行setTimeout后，传入setTimeout的函数会被暂存起来，不会立即执行（单线程的特点，不能同时干两件事）</li>
+<li>执行最后一行，打印300</li>
+<li>待所有程序执行完，处于空闲状态时，会立马看有没有暂存起来的要执行</li>
+<li>发现暂存起来的setTimeout 中的函数无需等待时间，就立即过来执行</li>
+</ul>
+<p>一个关于setTimeout的笔试题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">console.log(1);</div><div class="line">setTimeout(function()&#123;</div><div class="line">    console.log(2);</div><div class="line">&#125;,0)</div><div class="line">console.log(3);</div><div class="line">setTimeout(function()&#123;</div><div class="line">    console.log(4);</div><div class="line">&#125;,1000)</div><div class="line">console.log(5);</div><div class="line">//1</div><div class="line">//3</div><div class="line">//5</div><div class="line">//2</div><div class="line">//4</div></pre></td></tr></table></figure>
+<h5 id="六、其他知识"><a href="#六、其他知识" class="headerlink" title="六、其他知识"></a>六、其他知识</h5><ul>
+<li>获取 2018-01-23 格式的日期</li>
+<li>获取随机数，要求是长度一致的字符串格式</li>
+<li>写一个能遍历对象和数组的通用 forEach 函数</li>
+</ul>
+<h4 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Date.now()  //获取当前时间毫秒数</div><div class="line">var dt new Date();</div><div class="line">dt.getTime()    //获取毫秒数</div><div class="line">dt.getFullYear()    //年</div><div class="line">dt.getMonth()   //月（0-11）</div><div class="line">dt.getDate()    //日(1-31)</div><div class="line">dt.getDay()     //星期（0-6）</div><div class="line">dt.getHours()   //小时（0-23）</div><div class="line">dt.getMinutes() //分钟（0-59）</div><div class="line">dt.getSeconds() //秒（0-59）</div></pre></td></tr></table></figure>
+<h4 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h4><p>forEach 遍历所有元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var arr = [&apos;苹果&apos;,&apos;香蕉&apos;,&apos;西瓜&apos;];</div><div class="line">arr.forEach(function(item,index)&#123;</div><div class="line">    //遍历数组的所有元素</div><div class="line">    console.log(index,item);</div><div class="line">    //0 &quot;苹果&quot;</div><div class="line">    //1 &quot;香蕉&quot;</div><div class="line">    //2 &quot;西瓜&quot;</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>every 判断所有元素是否都符合条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var arr = [1,2,3];</div><div class="line">var result = arr.every(function(item,index)&#123;</div><div class="line">    //用来判断所有的数组元素，都满足一个条件</div><div class="line">    if(item &lt; 4)&#123;</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line">console.log(result);    //true</div></pre></td></tr></table></figure>
+<p>some 判断是否有至少一个元素符合条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var arr = [1,2,3];</div><div class="line">var result = arr.some(function(item,index)&#123;</div><div class="line">    //用来判断所有的数组元素，只要有一个满足条件</div><div class="line">    if(item &lt; 2)&#123;</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line">console.log(result);    //true</div></pre></td></tr></table></figure>
+<p>sort 排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var arr = [1,4,2,3,5];</div><div class="line">var arr2 = arr.sort(function(a,b)&#123;</div><div class="line">    //从小到大排序</div><div class="line">    return a - b;</div><div class="line">    //从大到小排序</div><div class="line">    //return b - a</div><div class="line">&#125;)</div><div class="line">console.log(arr2);</div></pre></td></tr></table></figure>
+<p>map 对元素重新组装，生成新数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var arr = [1,2,3,4];</div><div class="line">var arr2 = arr.map(function(item,index)&#123;</div><div class="line">    //将元素重新组装，并返回</div><div class="line">    return &apos;&lt;b&gt;&apos; + item + &apos;&lt;/b&gt;&apos;;</div><div class="line">&#125;)</div><div class="line">console.log(arr2);</div><div class="line">//[&quot;&lt;b&gt;1&lt;/b&gt;&quot;, &quot;&lt;b&gt;2&lt;/b&gt;&quot;, &quot;&lt;b&gt;3&lt;/b&gt;&quot;, &quot;&lt;b&gt;4&lt;/b&gt;&quot;]</div></pre></td></tr></table></figure>
+<p>filter 过滤符合条件的元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var arr = [1,2,3,4,5];</div><div class="line">var arr2 = arr.filter(function(item,index)&#123;</div><div class="line">    //通过某一个条件过滤数组</div><div class="line">    if(item &gt;= 2)&#123;</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">console.log(arr2);//[2, 3, 4, 5]</div></pre></td></tr></table></figure>
+<h4 id="对象API"><a href="#对象API" class="headerlink" title="对象API"></a>对象API</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;x:100,y:200,z:300&#125;;</div><div class="line">for(var key in obj)&#123;</div><div class="line">    //如果key是自身的属性，那么打印出来</div><div class="line">    if(obj.hasOwnProperty(key))&#123;</div><div class="line">        console.log(key,obj[key]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>获取 2018-01-23 格式的日期:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var dt = new Date();</div><div class="line"></div><div class="line">function formatDate(dt)&#123;</div><div class="line">    if(!dt)&#123;</div><div class="line">        dt = new Date();</div><div class="line">    &#125;</div><div class="line">    var year = dt.getFullYear();</div><div class="line">    var month = dt.getMonth() + 1;</div><div class="line">    var date = dt.getDate();</div><div class="line"></div><div class="line">    if(month &lt; 10)&#123;</div><div class="line">        month = &apos;0&apos;+month;</div><div class="line">    &#125;</div><div class="line">    if(date &lt; 10)&#123;</div><div class="line">        date = &apos;0&apos;+month;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return year + &apos;-&apos; + month + &apos;-&apos; + date;</div><div class="line">&#125;</div><div class="line">console.log(formatDate(dt));</div></pre></td></tr></table></figure>
+<p>获取随机数，要求是长度一致的字符串格式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var random = Math.random();</div><div class="line">random = random + &apos;0000000000&apos;;//后面加上10个0</div><div class="line">random = random.slice(0,10);</div><div class="line">console.log(random);</div></pre></td></tr></table></figure></p>
+<p>写一个能遍历对象和数组的通用 forEach 函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">function forEach(obj,fn)&#123;</div><div class="line">    var key;</div><div class="line">    if(obj instanceof Array)&#123;</div><div class="line">        //准确判断是不是数组</div><div class="line">        obj.forEach(function(item,index)&#123;</div><div class="line">            fn(index,item);</div><div class="line">        &#125;);</div><div class="line">    &#125;else&#123;</div><div class="line">        //不是数组就是对象</div><div class="line">        for(key in obj)&#123;</div><div class="line">            fn(key,obj[key]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//使用</div><div class="line">var arr = [1,2,3];</div><div class="line">//注意，这里参数顺序换了，为了和对象的遍历格式一致</div><div class="line">forEach(arr,function(index,item)&#123;</div><div class="line">    console.log(index,item);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">var obj = &#123;x:100,y:200&#125;;</div><div class="line">forEach(obj,function(key,value)&#123;</div><div class="line">    console.log(key,value);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/21/javascript基础整理/" data-id="cjhb9t7au000x8onszdm8f6x6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/27/JS面向对象学习记录/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JS面向对象学习记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/05/浏览器知识小记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">浏览器知识小记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/日记/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程学习/">编程学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Javascript/" style="font-size: 16.67px;">Javascript</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/博客搭建/" style="font-size: 13.33px;">博客搭建</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/05/17/webApi整理/">Js-Web-Api整理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/17/Vue-js的学习记录/">Vue.js的基础知识</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/16/hexo/">Hello hexo!</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/16/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/03/ES6学习记录/">ES6学习记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
