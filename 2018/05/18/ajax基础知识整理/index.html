@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Javascript,前端,Ajax," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="同步与异步同步：客户端发起请求，服务端需要处理，响应，此时客户端完全等待，当服务器处理完毕，客户端重新载入页面，如果出现错误，再次发生请求，处理，等待…
+
+异步：填写表单时，页面当时就把数据发送到服务器（发送请求），服务器处理响应，把结果发给页面，过程中不不要重新加载页面，填写的错误会实时显示，不会有任何的等待">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajax基础知识整理">
+<meta property="og:url" content="anqwjoe.github.io/2018/05/18/ajax基础知识整理/index.html">
+<meta property="og:site_name" content="Anqw's world">
+<meta property="og:description" content="同步与异步同步：客户端发起请求，服务端需要处理，响应，此时客户端完全等待，当服务器处理完毕，客户端重新载入页面，如果出现错误，再次发生请求，处理，等待…
+
+异步：填写表单时，页面当时就把数据发送到服务器（发送请求），服务器处理响应，把结果发给页面，过程中不不要重新加载页面，填写的错误会实时显示，不会有任何的等待">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2qZdg.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2qlQ0.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2qGeU.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2qYo4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2qNFJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2qaWR.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2qBy6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2qywD.png">
+<meta property="og:updated_time" content="2018-08-15T13:54:25.147Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ajax基础知识整理">
+<meta name="twitter:description" content="同步与异步同步：客户端发起请求，服务端需要处理，响应，此时客户端完全等待，当服务器处理完毕，客户端重新载入页面，如果出现错误，再次发生请求，处理，等待…
+
+异步：填写表单时，页面当时就把数据发送到服务器（发送请求），服务器处理响应，把结果发给页面，过程中不不要重新加载页面，填写的错误会实时显示，不会有任何的等待">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/08/15/P2qZdg.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="anqwjoe.github.io/2018/05/18/ajax基础知识整理/"/>
+
+
+
+
+
+  <title>Ajax基础知识整理 | Anqw's world</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/AnqwJoe" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#FD6C6C; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Anqw's world</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个微小的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="anqwjoe.github.io/2018/05/18/ajax基础知识整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AnqwJoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Anqw's world">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Ajax基础知识整理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-18T11:56:20+08:00">
+                2018-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程学习/" itemprop="url" rel="index">
+                    <span itemprop="name">编程学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h3><p><strong>同步</strong>：客户端发起请求，服务端需要处理，响应，此时客户端完全等待，当服务器处理完毕，客户端重新载入页面，如果出现错误，再次发生请求，处理，等待…</p>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2qZdg.jpg" alt="P2qZdg.jpg"></p>
+<p><strong>异步</strong>：填写表单时，页面当时就把数据发送到服务器（发送请求），服务器处理响应，把结果发给页面，过程中不不要重新加载页面，填写的错误会实时显示，不会有任何的等待</p>
+<a id="more"></a>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2qlQ0.jpg" alt="P2qlQ0.jpg"></p>
+<h3 id="MLHttpRequest对象"><a href="#MLHttpRequest对象" class="headerlink" title="MLHttpRequest对象"></a>MLHttpRequest对象</h3><p>用于后台和服务器交换数据，对网页进行部分的更新</p>
+<p>var request = new XMLHttpRequest();</p>
+<p>为了兼容IE6，创建XML对象：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> request;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(window.XMLHttpRequest)&#123;</div><div class="line">    request = <span class="keyword">new</span> <span class="type">XMLHttpRequest</span>();<span class="comment">//IE7+</span></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    request = <span class="keyword">new</span> <span class="type">ActiveXObject</span>(<span class="string">"Microsoft.XMLHTTP"</span>);<span class="comment">//IE6,IE5</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>HTTP</strong>：计算机通过网络进行通信的规则，使浏览器从WEB服务器去请求信息和服务</p>
+<p><strong>无状态协议</strong>：不建立持久的连接，服务端不保留连接的相关信息，处理完后就关闭了。</p>
+<h3 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h3><h4 id="请求过程"><a href="#请求过程" class="headerlink" title="请求过程"></a>请求过程</h4><ol>
+<li>建立TCP连接</li>
+<li>Web浏览器向Web服务器发送请求命令</li>
+<li>浏览器发送请求头信息</li>
+<li>服务器应答</li>
+<li>服务器发送应答头信息</li>
+<li>服务器向浏览器发送数据</li>
+<li>服务器关闭TCP连接</li>
+</ol>
+<h4 id="一个请求包含四部分："><a href="#一个请求包含四部分：" class="headerlink" title="一个请求包含四部分："></a>一个请求包含四部分：</h4><ul>
+<li>HTTP请求的方法和动作，如GET、POST；</li>
+<li>正在请求的URL，知道请求的地址；</li>
+<li>请求头，包含客户端环境信息，身份验证；</li>
+<li>请求体，包含客户提交的查询字符串信息，表单信息等；</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2qGeU.png" alt="P2qGeU.png"></p>
+<p><strong>GET：</strong>信息获取，使用URL传递参数，用来查询，不会影响数据本身，一般不用GET新建和修改操作，发送的信息对任何人都是可见的，所有的变量名和值都显示在URL当中，发送信息的数量限制在2000个字符。（添加在书签里的页面今后也能使用）（幂等）</p>
+<p><strong>POST：</strong>发送信息，修改服务器资源，不可见，嵌入HTTP请求体中，发送信息的数量无限制，常用新建修改删除等操作。</p>
+<h4 id="一个响应包含三部分："><a href="#一个响应包含三部分：" class="headerlink" title="一个响应包含三部分："></a>一个响应包含三部分：</h4><ol>
+<li>数字和文字组成的状态码，显示请求成功还是失败；</li>
+<li>响应头，包含许多有用的信息，如服务器类型、日期时间、内容类型和长度；</li>
+<li>响应体，相应正文；</li>
+</ol>
+<h4 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h4><p>1XX：信息类，收到WEB浏览器请求，正在进一步处理中；</p>
+<p>2XX:：成功，表示用户请求被正确接收，理解和处理 如200 OK</p>
+<p>3XX：重定向，表示没有请求成功，客户必须采取进一步的动作</p>
+<p>4XX：客户端错误，表示客户端提交的请求有错误，例如：404 NOT FOUND</p>
+<p>5XX：服务器错误，表示服务器不能完成对请求的处理：如 500</p>
+<h3 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest"></a>XMLHttpRequest</h3><h4 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h4><p>open(method,url,async)</p>
+<p>（发送请求方法时GET还是POST，请求地址，请求同步/异步一般为true）</p>
+<p>send(string) 把请求发送到服务器,GET请求可不填写，也可为none；</p>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2qYo4.png" alt="P2qYo4.png"></p>
+<h4 id="XMLHttpRequest取得响应"><a href="#XMLHttpRequest取得响应" class="headerlink" title="XMLHttpRequest取得响应"></a>XMLHttpRequest取得响应</h4><p><img src="https://s1.ax1x.com/2018/08/15/P2qNFJ.png" alt="P2qNFJ.png"></p>
+<p>readyState属性：该属性变化表示服务器响应的变化</p>
+<ul>
+<li>0：请求未初始化，open还未调用</li>
+<li>1：服务器连接已建立，open已经调用了</li>
+<li>2：请求已接收，也就是接收到头信息了</li>
+<li>3：请求处理中，接收到相应主体了</li>
+<li><p>4：请求完成，相应就绪，也就是响应完成</p>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2qaWR.png" alt="P2qaWR.png"></p>
+</li>
+</ul>
+<h4 id="一个小实例"><a href="#一个小实例" class="headerlink" title="一个小实例"></a>一个小实例</h4><p><img src="https://s1.ax1x.com/2018/08/15/P2qBy6.png" alt="P2qBy6.png"></p>
+<p>放到本地服务器环境访问</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-cn"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">media</span>=<span class="string">"screen"</span>&gt;</span><span class="css"></span></div><div class="line">        *&#123;</div><div class="line">            <span class="attribute">font-family</span>: <span class="string">'微软雅黑'</span>;</div><div class="line">            <span class="attribute">font-size</span>: <span class="number">30px</span>;</div><div class="line">            <span class="attribute">line-height</span>: <span class="number">1.6</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="selector-id">#searchResult</span>,<span class="selector-id">#creatResult</span>&#123;</div><div class="line">            <span class="attribute">color</span>: orange;</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>员工查询<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>请输入员工编号：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"keyword"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"search"</span>&gt;</span>查询<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"searchResult"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>员工新建<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>请输入员工姓名：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"staffName"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>请输入员工编号：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"staffNumber"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>请选择员工性别：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"staffSex"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>男<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>女<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>请输入员工职位：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"staffJob"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"save"</span>&gt;</span>保存<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"creatResult"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'search'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">        request.open(<span class="string">'GET'</span>,<span class="string">'server.php?number='</span>+<span class="built_in">document</span>.getElementById(<span class="string">'keyword'</span>).value);</div><div class="line">        request.send();</div><div class="line">        request.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">if</span> (request.readyState===<span class="number">4</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(request.status===<span class="number">200</span>)&#123;</div><div class="line">                    <span class="built_in">document</span>.getElementById(<span class="string">'searchResult'</span>).innerHTML = request.responseText;</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    alert(<span class="string">'发生错误'</span>+ request.status);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'save'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">        request.open(<span class="string">'POST'</span>,<span class="string">'server.php'</span>);</div><div class="line">        <span class="keyword">var</span> data = <span class="string">'name='</span> + <span class="built_in">document</span>.getElementById(<span class="string">'staffName'</span>).value</div><div class="line">                    +<span class="string">'&amp;number='</span> + <span class="built_in">document</span>.getElementById(<span class="string">'staffNumber'</span>).value</div><div class="line">                    +<span class="string">'&amp;sex='</span> + <span class="built_in">document</span>.getElementById(<span class="string">'staffSex'</span>).value</div><div class="line">                    +<span class="string">'&amp;job='</span> + <span class="built_in">document</span>.getElementById(<span class="string">'staffJob'</span>).value;</div><div class="line">        request.setRequestHeader(<span class="string">'Content-Type'</span>,<span class="string">'application/x-www-form-urlencoded'</span>);</div><div class="line">        <span class="comment">//POST时不要忘记在open()和send()中间加入setRequestHeader();</span></div><div class="line">        request.send(data);</div><div class="line">        request.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">if</span> (request.readyState===<span class="number">4</span>) &#123;</div><div class="line">                <span class="keyword">if</span>(request.status===<span class="number">200</span>)&#123;</div><div class="line">                    <span class="built_in">document</span>.getElementById(<span class="string">'creatResult'</span>).innerHTML = request.responseText;</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    alert(<span class="string">'发生错误'</span>+ request.status);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">//设置页面内容是html编码格式是utf-8</span></div><div class="line">header(<span class="string">"Content-Type: text/plain;charset=utf-8"</span>); </div><div class="line"><span class="comment">//header("Content-Type: application/json;charset=utf-8"); </span></div><div class="line"><span class="comment">//header("Content-Type: text/xml;charset=utf-8"); </span></div><div class="line"><span class="comment">//header("Content-Type: text/html;charset=utf-8"); </span></div><div class="line"><span class="comment">//header("Content-Type: application/javascript;charset=utf-8"); </span></div><div class="line"></div><div class="line"><span class="comment">//定义一个多维数组，包含员工的信息，每条员工信息为一个数组</span></div><div class="line">$staff = <span class="keyword">array</span></div><div class="line">    (</div><div class="line">        <span class="keyword">array</span>(<span class="string">"name"</span> =&gt; <span class="string">"洪七"</span>, <span class="string">"number"</span> =&gt; <span class="string">"101"</span>, <span class="string">"sex"</span> =&gt; <span class="string">"男"</span>, <span class="string">"job"</span> =&gt; <span class="string">"总经理"</span>),</div><div class="line">        <span class="keyword">array</span>(<span class="string">"name"</span> =&gt; <span class="string">"郭靖"</span>, <span class="string">"number"</span> =&gt; <span class="string">"102"</span>, <span class="string">"sex"</span> =&gt; <span class="string">"男"</span>, <span class="string">"job"</span> =&gt; <span class="string">"开发工程师"</span>),</div><div class="line">        <span class="keyword">array</span>(<span class="string">"name"</span> =&gt; <span class="string">"黄蓉"</span>, <span class="string">"number"</span> =&gt; <span class="string">"103"</span>, <span class="string">"sex"</span> =&gt; <span class="string">"女"</span>, <span class="string">"job"</span> =&gt; <span class="string">"产品经理"</span>)</div><div class="line">    );</div><div class="line"></div><div class="line"><span class="comment">//判断如果是get请求，则进行搜索；如果是POST请求，则进行新建</span></div><div class="line"><span class="comment">//$_SERVER是一个超全局变量，在一个脚本的全部作用域中都可用，不用使用global关键字</span></div><div class="line"><span class="comment">//$_SERVER["REQUEST_METHOD"]返回访问页面使用的请求方法</span></div><div class="line"><span class="keyword">if</span> ($_SERVER[<span class="string">"REQUEST_METHOD"</span>] == <span class="string">"GET"</span>) &#123;</div><div class="line">    search();</div><div class="line">&#125; <span class="keyword">elseif</span> ($_SERVER[<span class="string">"REQUEST_METHOD"</span>] == <span class="string">"POST"</span>)&#123;</div><div class="line">    create();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//通过员工编号搜索员工</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">search</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">//检查是否有员工编号的参数</span></div><div class="line">    <span class="comment">//isset检测变量是否设置；empty判断值为否为空</span></div><div class="line">    <span class="comment">//超全局变量 $_GET 和 $_POST 用于收集表单数据</span></div><div class="line">    <span class="keyword">if</span> (!<span class="keyword">isset</span>($_GET[<span class="string">"number"</span>]) || <span class="keyword">empty</span>($_GET[<span class="string">"number"</span>])) &#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"参数错误"</span>;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//函数之外声明的变量拥有 Global 作用域，只能在函数以外进行访问。</span></div><div class="line">    <span class="comment">//global 关键词用于访问函数内的全局变量</span></div><div class="line">    <span class="keyword">global</span> $staff;</div><div class="line">    <span class="comment">//获取number参数</span></div><div class="line">    $number = $_GET[<span class="string">"number"</span>];</div><div class="line">    $result = <span class="string">"没有找到员工。"</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//遍历$staff多维数组，查找key值为number的员工是否存在，如果存在，则修改返回结果</span></div><div class="line">    <span class="keyword">foreach</span> ($staff <span class="keyword">as</span> $value) &#123;</div><div class="line">        <span class="keyword">if</span> ($value[<span class="string">"number"</span>] == $number) &#123;</div><div class="line">            $result = <span class="string">"找到员工：员工编号："</span> . $value[<span class="string">"number"</span>] . <span class="string">"，员工姓名："</span> . $value[<span class="string">"name"</span>] . </div><div class="line">                              <span class="string">"，员工性别："</span> . $value[<span class="string">"sex"</span>] . <span class="string">"，员工职位："</span> . $value[<span class="string">"job"</span>];</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">echo</span> $result;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//创建员工</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">//判断信息是否填写完全</span></div><div class="line">    <span class="keyword">if</span> (!<span class="keyword">isset</span>($_POST[<span class="string">"name"</span>]) || <span class="keyword">empty</span>($_POST[<span class="string">"name"</span>])</div><div class="line">        || !<span class="keyword">isset</span>($_POST[<span class="string">"number"</span>]) || <span class="keyword">empty</span>($_POST[<span class="string">"number"</span>])</div><div class="line">        || !<span class="keyword">isset</span>($_POST[<span class="string">"sex"</span>]) || <span class="keyword">empty</span>($_POST[<span class="string">"sex"</span>])</div><div class="line">        || !<span class="keyword">isset</span>($_POST[<span class="string">"job"</span>]) || <span class="keyword">empty</span>($_POST[<span class="string">"job"</span>])) &#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"参数错误，员工信息填写不全"</span>;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//<span class="doctag">TODO:</span> 获取POST表单数据并保存到数据库</span></div><div class="line">    </div><div class="line">    <span class="comment">//提示保存成功</span></div><div class="line">    <span class="keyword">echo</span> <span class="string">"员工："</span> . $_POST[<span class="string">"name"</span>] . <span class="string">" 信息保存成功！"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>JSON.parse()</strong> 方法用于将一个 JSON 字符串转换为对象。还能检测错误</p>
+<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p><img src="https://s1.ax1x.com/2018/08/15/P2qywD.png" alt="P2qywD.png"></p>
+<p>JS出去安全方面的考虑，不允许跨域调用其他页面的对象。什么是跨域呢，简单理解就是因为JS同源策略的限制，a.com域名下的JS无法操作b.com或c.com域名下的对象</p>
+<p>子域名不相同，端口不同，协议不同，也会被认为是跨域，HTTP访问的80端口，HTTPS访问443端口</p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p><strong>要理解跨域，先要了解一下“同源策略”。所谓同源是指，域名，协议，端口相同。所谓“同源策略“，简单的说就是基于安全考虑，当前域不能访问其他域的东西。</strong></p>
+<p><strong>img</strong> 的src（获取图片），<strong>link</strong> 的href（获取css）， <strong>script</strong> 的src（获取javascript）这三个都不符合同源策略，它们可以跨域获取数据。JSONP就是利用 script 的src来实现跨域获取数据的。</p>
+<p>代理：通过在同域名的web服务器端创建一个代理，比如在北京的web服务器的后台来调用上海服务器的服务，然后再把响应结果返回给前端，这样前端在调用北京同域名的服务就和调用上海的服务效果相同了，又比如用PHP文件访问web资源，然后用当前文件访问PHP资源。</p>
+<p>JSONP：可以解决主流浏览器GET请求跨域数据访问的问题，就是动态创建 <strong>script</strong> 标签，然后利用 <strong>script</strong> 的src不受同源策略约束来跨域获取数据。</p>
+<p><a href="https://blog.csdn.net/u014607184/article/details/52027879" target="_blank" rel="external">https://blog.csdn.net/u014607184/article/details/52027879</a></p>
+<p>这个特别好</p>
+<p>动态创建 <strong>script</strong> 标签，设置其src，回调函数在src中设置：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">script </span>= document.createElement(<span class="string">"script"</span>)<span class="comment">;</span></div><div class="line"><span class="keyword">script.src </span>= <span class="string">"https://api.douban.com/v2/book/search?q=javascript&amp;count=1&amp;callback=handleResponse"</span><span class="comment">;</span></div><div class="line">document.<span class="keyword">body.insertBefore(script, </span>document.<span class="keyword">body.firstChild);</span></div></pre></td></tr></table></figure>
+<p>在页面中，返回的JSON作为参数传入回调函数中，通过回调函数操作数据。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleResponse</span><span class="params">(response)</span></span>&#123;</div><div class="line">    <span class="comment">// 对response数据进行操作代码</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="jQuery封装JSONP"><a href="#jQuery封装JSONP" class="headerlink" title="jQuery封装JSONP"></a>jQuery封装JSONP</h4><p>jQuery封装的$.ajax中有个dataType属性，将该属性设置 dataType:”jsonp” 就能实现JSONP跨域了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">"#btn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line">        $.ajax(&#123;</div><div class="line">            <span class="attr">async</span> : <span class="literal">true</span>,</div><div class="line">            <span class="attr">url</span> : <span class="string">"https://api.douban.com/v2/book/search"</span>,</div><div class="line">            <span class="attr">type</span> : <span class="string">"GET"</span>,</div><div class="line">            <span class="attr">dataType</span> : <span class="string">"jsonp"</span>, <span class="comment">// 返回的数据类型，设置为JSONP方式</span></div><div class="line">            jsonp : <span class="string">'callback'</span>, <span class="comment">//指定一个查询参数名称来覆盖默认的 jsonp 回调参数名 callback</span></div><div class="line">            jsonpCallback: <span class="string">'handleResponse'</span>, <span class="comment">//设置回调函数名</span></div><div class="line">            data : &#123;</div><div class="line">                <span class="attr">q</span> : <span class="string">"javascript"</span>, </div><div class="line">                <span class="attr">count</span> : <span class="number">1</span></div><div class="line">            &#125;, </div><div class="line">            <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">response, status, xhr</span>)</span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'状态为：'</span> + status + <span class="string">',状态是：'</span> + xhr.statusText);</div><div class="line">                <span class="built_in">console</span>.log(response);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><strong>json with padding</strong></p>
+<p>1.利用script标签加载资源，src属性认得不是后缀名，而是里面的实质内容,要加载的文件也不需要管是不是.js结尾，而是内部是否为合法的JS内容；</p>
+<p>2.用script标签加载资源是没有跨域问题的，比如加载jQuery；</p>
+<p>3.在资源加载进来之前定义好一个函数，这个函数接收一个参数（数据），函数里面利用这个参数做一些事情，然后需要的时候通过script标签加载对应远程文件资源，当远程文件资源被加载进来的时候，就会去执行我们前面定义好的函数，并且把数据当作这个函数的参数传入进去</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span>点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params">response</span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(response);</div><div class="line">            <span class="built_in">console</span>.log(response.books[<span class="number">0</span>].images.small);</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">        <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> oBtn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</div><div class="line">            oBtn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">                script.src = <span class="string">'https://api.douban.com/v2/book/search?q=javascript&amp;count=1&amp;callback=handle'</span>;<span class="comment">//callback参数为调用的函数名</span></div><div class="line">                <span class="built_in">document</span>.body.appendChild(script);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="通过-getJSON"><a href="#通过-getJSON" class="headerlink" title="通过$.getJSON()"></a>通过$.getJSON()</h4><p>在地址中加上callback=?参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.getJSON(<span class="string">"https://api.douban.com/v2/book/search?q=javascript&amp;count=1&amp;callback=?"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(data);</div><div class="line">            &#125;);</div></pre></td></tr></table></figure>
+<h4 id="处理跨域的方法——XHR2"><a href="#处理跨域的方法——XHR2" class="headerlink" title="处理跨域的方法——XHR2"></a>处理跨域的方法——XHR2</h4><p>html5提供 XMLHttpRequest Level2 实现了跨域访问以及其他的一些新功能(ie10下不支持)</p>
+<p>在服务端做一个改造：</p>
+<p>header(‘Access-Control-Allow-Origin:<em>‘);//</em>所有域都能访问</p>
+<p>header(‘Access-Control-Allow-Methods:POST,GET);</p>
+<h3 id="封装一个Ajax"><a href="#封装一个Ajax" class="headerlink" title="封装一个Ajax"></a>封装一个Ajax</h3><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span><span class="params">(<span class="keyword">method</span>,url,data,success)</span><span class="comment">&#123;</span></span></div><div class="line">    var xhr = null;</div><div class="line"></div><div class="line">    if (window.XMLHttpRequest) &#123;</div><div class="line">        xhr = new XMLHttpRequest();</div><div class="line">    &#125; <span class="title">else</span><span class="comment">&#123;</span></div><div class="line">        xhr = ActiveXObject("Microsoft","XMLHTTP");</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(<span class="function"><span class="keyword">method</span> == '<span class="title">get</span>' &amp;&amp; <span class="title">data</span>)<span class="comment">&#123; //如果get方法并且有数据存在</span></span></div><div class="line">        url += '?' +data;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="title">xhr</span>.<span class="title">open</span><span class="params">(<span class="keyword">method</span>,url,<span class="keyword">true</span>)</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(<span class="function"><span class="keyword">method</span> == '<span class="title">get</span>')<span class="comment">&#123;</span></span></div><div class="line">        xhr.send();</div><div class="line">    &#125;<span class="title">else</span><span class="comment">&#123;</span></div><div class="line">        xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');</div><div class="line">        xhr.send(data);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="title">xhr</span>.<span class="title">onreadystatechange</span> = <span class="title">function</span><span class="params">()</span><span class="comment">&#123;</span></div><div class="line">        if(xhr.readyState == 4)&#123;</div><div class="line">            if(xhr.status == 200)&#123;</div><div class="line">                success &amp;&amp; success(xhr.responseText);</div><div class="line">            &#125;<span class="title">else</span><span class="comment">&#123;</span></div><div class="line">                alert('出错了,err' + xhr.status);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+	
+	
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+            <a href="/tags/Ajax/" rel="tag"># Ajax</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/17/ES6学习记录/" rel="next" title="ES6学习记录">
+                <i class="fa fa-chevron-left"></i> ES6学习记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/19/Vue-js组件理解/" rel="prev" title="Vue.js组件理解">
+                Vue.js组件理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="AnqwJoe" />
+            
+              <p class="site-author-name" itemprop="name">AnqwJoe</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Anqwjoe" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:anqwjoe@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://aa.08800.top" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.cnblogs.com/anqwjoe" target="_blank" title="blog">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>blog</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#同步与异步"><span class="nav-text">同步与异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MLHttpRequest对象"><span class="nav-text">MLHttpRequest对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP请求"><span class="nav-text">HTTP请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求过程"><span class="nav-text">请求过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个请求包含四部分："><span class="nav-text">一个请求包含四部分：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个响应包含三部分："><span class="nav-text">一个响应包含三部分：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP状态码"><span class="nav-text">HTTP状态码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XMLHttpRequest"><span class="nav-text">XMLHttpRequest</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#发送请求"><span class="nav-text">发送请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XMLHttpRequest取得响应"><span class="nav-text">XMLHttpRequest取得响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个小实例"><span class="nav-text">一个小实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨域"><span class="nav-text">跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方法"><span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jQuery封装JSONP"><span class="nav-text">jQuery封装JSONP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过-getJSON"><span class="nav-text">通过$.getJSON()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理跨域的方法——XHR2"><span class="nav-text">处理跨域的方法——XHR2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装一个Ajax"><span class="nav-text">封装一个Ajax</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AnqwJoe</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+-->
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
