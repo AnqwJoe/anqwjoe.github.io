@@ -416,7 +416,7 @@ Ajax请求（包括HTTP协议）
 <p>3、attribute</p>
 <p>修改获取的是HTML文档中标签的属性</p>
 <h4 id="DOM结构操作"><a href="#DOM结构操作" class="headerlink" title="DOM结构操作"></a>DOM结构操作</h4><p>新增节点，添加节点</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> div1 = <span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>);</div><div class="line"><span class="comment">//添加新节点</span></div><div class="line"><span class="keyword">var</span> p1 = <span class="built_in">document</span>.createElement(<span class="string">"p"</span>);</div><div class="line">p1.innerHTML = <span class="string">'this is p1'</span>;</div><div class="line">div1.appendChild(p1); <span class="comment">//添加创建的新元素</span></div><div class="line"><span class="comment">//移动已有节点</span></div><div class="line"><span class="keyword">var</span> p2 = <span class="built_in">document</span>.getElementById(<span class="string">"p2"</span>);</div><div class="line">div1.appendChild(p2);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> div1 = <span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>);</div><div class="line"><span class="comment">//添加新节点</span></div><div class="line"><span class="keyword">var</span> p1 = <span class="built_in">document</span>.createElement(<span class="string">"p"</span>);</div><div class="line">p1.innerHTML = <span class="string">'this is p1'</span>;</div><div class="line">div1.appendChild(p1); <span class="comment">//添加创建的新元素</span></div><div class="line"><span class="comment">//移动已有节点</span></div><div class="line"><span class="keyword">var</span> p2 = <span class="built_in">document</span>.getElementById(<span class="string">"p2"</span>);</div><div class="line">div1.appendChild(p2);</div></pre></td></tr></table></figure>
 <p>获取父元素与子元素、移除节点</p>
 <figure class="highlight qml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">var</span> div1 = <span class="built_in">document</span>.getElementById(<span class="string">"div1"</span>);</div><div class="line"></div><div class="line"><span class="built_in">var</span> <span class="built_in">parent</span> = div1.parentElement;</div><div class="line"><span class="built_in">var</span> child = div1.childNodes;</div><div class="line"><span class="comment">//移除节点</span></div><div class="line">div1.removeChild(child[<span class="number">0</span>]);</div></pre></td></tr></table></figure>
 <h2 id="二、BOM操作（Browser-Object-Model"><a href="#二、BOM操作（Browser-Object-Model" class="headerlink" title="二、BOM操作（Browser Object Model)"></a>二、BOM操作（Browser Object Model)</h2><ul>
@@ -694,7 +694,7 @@ response.setHeader("Access-Control-Allow-Credentials", "true");</pre>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -716,7 +716,7 @@ response.setHeader("Access-Control-Allow-Credentials", "true");</pre>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -797,7 +797,7 @@ response.setHeader("Access-Control-Allow-Credentials", "true");</pre>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

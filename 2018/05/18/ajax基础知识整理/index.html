@@ -437,7 +437,7 @@
 <p>动态创建 <strong>script</strong> 标签，设置其src，回调函数在src中设置：</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">script </span>= document.createElement(<span class="string">"script"</span>)<span class="comment">;</span></div><div class="line"><span class="keyword">script.src </span>= <span class="string">"https://api.douban.com/v2/book/search?q=javascript&amp;count=1&amp;callback=handleResponse"</span><span class="comment">;</span></div><div class="line">document.<span class="keyword">body.insertBefore(script, </span>document.<span class="keyword">body.firstChild);</span></div></pre></td></tr></table></figure>
 <p>在页面中，返回的JSON作为参数传入回调函数中，通过回调函数操作数据。</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleResponse</span><span class="params">(response)</span></span>&#123;</div><div class="line">    <span class="comment">// 对response数据进行操作代码</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleResponse</span>(<span class="params">response</span>)</span>&#123;</div><div class="line">    <span class="comment">// 对response数据进行操作代码</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="jQuery封装JSONP"><a href="#jQuery封装JSONP" class="headerlink" title="jQuery封装JSONP"></a>jQuery封装JSONP</h4><p>jQuery封装的$.ajax中有个dataType属性，将该属性设置 dataType:”jsonp” 就能实现JSONP跨域了</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">"#btn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line">        $.ajax(&#123;</div><div class="line">            <span class="attr">async</span> : <span class="literal">true</span>,</div><div class="line">            <span class="attr">url</span> : <span class="string">"https://api.douban.com/v2/book/search"</span>,</div><div class="line">            <span class="attr">type</span> : <span class="string">"GET"</span>,</div><div class="line">            <span class="attr">dataType</span> : <span class="string">"jsonp"</span>, <span class="comment">// 返回的数据类型，设置为JSONP方式</span></div><div class="line">            jsonp : <span class="string">'callback'</span>, <span class="comment">//指定一个查询参数名称来覆盖默认的 jsonp 回调参数名 callback</span></div><div class="line">            jsonpCallback: <span class="string">'handleResponse'</span>, <span class="comment">//设置回调函数名</span></div><div class="line">            data : &#123;</div><div class="line">                <span class="attr">q</span> : <span class="string">"javascript"</span>, </div><div class="line">                <span class="attr">count</span> : <span class="number">1</span></div><div class="line">            &#125;, </div><div class="line">            <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">response, status, xhr</span>)</span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'状态为：'</span> + status + <span class="string">',状态是：'</span> + xhr.statusText);</div><div class="line">                <span class="built_in">console</span>.log(response);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p><strong>json with padding</strong></p>
@@ -595,7 +595,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -617,7 +617,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -698,7 +698,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
